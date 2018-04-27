@@ -1,0 +1,20 @@
+{
+    "name": "treatstock/api",
+    "description": "Treatstock api module.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Treatstock",
+            "email": "support@treatstock.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "treatstock\\api\\v2\\": "/"
+        }
+    }
+}
