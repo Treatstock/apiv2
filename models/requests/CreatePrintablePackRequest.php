@@ -10,7 +10,7 @@ namespace treatstock\api\v2\models\requests;
 class CreatePrintablePackRequest
 {
     /**
-     * Model file paths. You can set one or several path on local disk.
+     * Model file paths. You can set one or several paths on local disk.
      * You can upload
      *
      * @var array
@@ -18,7 +18,7 @@ class CreatePrintablePackRequest
     public $filePaths = [];
 
     /**
-     * Also you can set model file urls. Treatstock will download it, and create printable pack.
+     * Also you can set model file URLs. Treatstock will download it and create a printable pack.
      *
      * @var array
      */
@@ -44,7 +44,7 @@ class CreatePrintablePackRequest
     public $affiliateCurrency = '';
 
     /**
-     * Model title. Single line text. Max length 45 chars.
+     * Model title. Single-line text. Max length 45 characters.
      * Example: Katana Mask
      *
      * @var string
@@ -52,7 +52,7 @@ class CreatePrintablePackRequest
     public $title = '';
 
     /**
-     * Print instructions for print service. Multiline text.
+     * Print instructions for 3D printing service. Multi-line text.
      * Example: This model should be printed horizontally.
      *
      * @var string
@@ -61,15 +61,15 @@ class CreatePrintablePackRequest
 
 
     /**
-     * Model text description, for client. Multiline text.
-     * Example: The mask was designed after Katana / Tatsu Yamashiro.
+     * Model text description for client. Multi-line text.
+     * Example: The mask was designed after Katana/Tatsu Yamashiro.
      *
      * @var string
      */
     public $description = '';
 
     /**
-     * Client ip. By client ip Treatstock detect client location for printing.
+     * Client IP. With client's IP, Treatstock can detect the client's location to display appropriate manufacturers.
      * Example: 83.69.106.68
      *
      * @var string
