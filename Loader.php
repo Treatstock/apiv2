@@ -6,6 +6,7 @@ include 'models/ModelReflectionService.php';
 include 'models/CostInfo.php';
 include 'models/MaterialGroupColor.php';
 include 'models/Color.php';
+include 'models/Location.php';
 include 'models/requests/CreatePrintablePackRequest.php';
 include 'models/requests/GetPrintablePackStatusRequest.php';
 include 'models/requests/GetPrintablePackCostsRequest.php';

@@ -8,6 +8,8 @@
 
 namespace treatstock\api\v2\models\requests;
 
+use treatstock\api\v2\models\Location;
+
 class GetPrintablePackCostsRequest
 {
     /**
@@ -16,4 +18,11 @@ class GetPrintablePackCostsRequest
      * @var  int
      */
     public $printablePackId;
+
+    /**
+     * You can specify client location
+     *
+     * @var Location
+     */
+    public $location;
 }

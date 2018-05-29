@@ -29,6 +29,11 @@ var_dump($testStatusResponse);
 echo "\nGet printable pack costs...";
 $testStatusRequest = new \treatstock\api\v2\models\requests\GetPrintablePackCostsRequest();
 $testStatusRequest->printablePackId = $createResponse->id;
+if (0) { // Optional set location, you can skip this set, if $createRequest->locationCountryIso setted
+    $location = new \treatstock\api\v2\models\Location();
+    $location->country = 'US';
+    $testStatusRequest->location = $location;
+}
 $testStatusResponse = $apiService->getPrintablePackCosts($testStatusRequest);
 echo "\nGet printable pack status:\n";
 var_dump($testStatusResponse);

@@ -19,7 +19,17 @@ class GetPrintablePackCostsHttpRequest extends BaseRequest
      */
     public function getRequestUrl()
     {
-        return $this->baseUrl.'printable-pack-costs/?printablePackId=' . $this->model->printablePackId . '&private-key=' . $this->privateKey;
+        $url = $this->baseUrl . 'printable-pack-costs/?printablePackId=' . $this->model->printablePackId . '&private-key=' . $this->privateKey;
+        if ($this->model->location) {
+            if ($this->model->location->country) {
+                $url .= '&location[country]=' . $this->model->location->country;
+            } elseif ($this->model->location->ip) {
+                $url .= '&location[ip]=' . $this->model->location->ip;
+            } else {
+                throw new \InvalidArgumentException('You should specify country or ip location');
+            }
+        }
+        return $url;
     }
 
     /**
