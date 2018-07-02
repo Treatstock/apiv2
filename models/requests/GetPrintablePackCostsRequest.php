@@ -25,4 +25,20 @@ class GetPrintablePackCostsRequest
      * @var Location
      */
     public $location;
+
+    /**
+     * You can filter offers by material group
+     * Example: pla
+     *
+     * @var string
+     */
+    public $printerMaterialGroup;
+
+    /**
+     * You can filter offers by color
+     * Example: white
+     *
+     * @var string
+     */
+    public $printerColor;
 }
