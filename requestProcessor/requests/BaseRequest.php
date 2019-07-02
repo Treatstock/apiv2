@@ -21,6 +21,9 @@ abstract class BaseRequest
      */
     public $baseUrl;
 
+    const HTTP_METHOD_PUT = 'PUT';
+
+
     public function __construct($privateKey, $model, $baseUrl)
     {
         $this->privateKey = $privateKey;
@@ -42,6 +45,11 @@ abstract class BaseRequest
      * @return array
      */
     abstract public function getPostParams();
+
+    public function getMethod()
+    {
+        return '';
+    }
 
     /**
      * Don`t send empty params.

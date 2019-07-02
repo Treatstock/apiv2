@@ -2,8 +2,10 @@
 
 namespace treatstock\api\v2\models\responses;
 
+use treatstock\api\v2\models\Model3dPart;
 use treatstock\api\v2\models\ModelValidatorInterface;
-use treatstock\api\v2\models\PrintablePackCost;
+use treatstock\api\v2\models\PartSize;
+use treatstock\api\v2\models\PrintablePackPrice;
 
 
 class GetPrintablePackStatusResponse implements ModelValidatorInterface
@@ -31,37 +33,47 @@ class GetPrintablePackStatusResponse implements ModelValidatorInterface
 
 
     /**
-     * Model cost
+     * Model price
      *
      * @var float
      */
-    public $affiliatePrice;
+    public $modelPrice;
 
     /**
-     * Model cost currency
+     * Model price info
+     *
+     * @var PrintablePackPrice
+     */
+    public $calculatedMinPrice;
+
+    /**
+     * Model3d size unit
+     * Example: mm
      *
      * @var string
      */
-    public $affiliateCurrency;
+    public $scaleUnit;
 
     /**
-     * Model cost info
-     *
-     * @var PrintablePackCost
+     * @var PartSize
      */
-    public $calculatedMinCost;
-
+    public $largestPartSize;
 
     /**
-     * If cost isn`t calculated. Contains reason.
+     * @var Model3dPart[]
+     */
+    public $parts;
+
+    /**
+     * If price isn`t calculated. Contains reason.
      * See constants EMPTY_REASON_NOT_CALCULATED_YET, EMPTY_REASON_CLIENT_LOCATION_NOT_SET, etc...
      *
      * @var string
      */
-    public $calculatedMinCostEmptyReason;
+    public $calculatedMinPriceEmptyReason;
 
-    const EMPTY_REASON_NOT_CALCULATED_YET      = 'not_calculated_yet';           // Please retry api request, cost is calculating now
-    const EMPTY_REASON_CLIENT_LOCATION_NOT_SET = 'client_location_not_set'; // Cost can`t be calculated, if client location wasn`t setted.
+    const EMPTY_REASON_NOT_CALCULATED_YET      = 'not_calculated_yet';          // Please retry api request, price is calculating now
+    const EMPTY_REASON_CLIENT_LOCATION_NOT_SET = 'client_location_not_set';     // Price can`t be calculated, if client location wasn`t setted.
     const EMPTY_REASON_PRINTING_IMPOSSIBLE     = 'printing_impossible';         // Printing isn`t possible. It may be expired (1 day), need to create new Printable pack.
 
     public function validateAndGetErrors()

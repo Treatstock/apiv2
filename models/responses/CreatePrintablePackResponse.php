@@ -2,6 +2,7 @@
 
 namespace treatstock\api\v2\models\responses;
 
+use treatstock\api\v2\models\Model3dPart;
 use treatstock\api\v2\models\ModelValidatorInterface;
 
 
@@ -27,6 +28,30 @@ class CreatePrintablePackResponse implements ModelValidatorInterface
      */
     public $redir;
 
+
+    /**
+     * May be used to insert into iframe with custom settings.
+     *
+     * @var string
+     */
+    public $widgetUrl;
+
+    /**
+     * Ready to use iframe html code
+     *
+     * @var string
+     */
+    public $widgetHtml;
+
+
+    /**
+     * List of model3d parts info
+     *
+     * @var Model3dPart[]
+     */
+    public $parts;
+
+
     /**
      *
      */
@@ -36,7 +61,7 @@ class CreatePrintablePackResponse implements ModelValidatorInterface
 
         if (($this->id) != ((int)$this->id)) {
             $errors['id'] = ModelValidatorInterface::REASON_NOT_INT;
-        } elseif (($this->id)<1) {
+        } elseif ($this->id < 1) {
             $errors['id'] = ModelValidatorInterface::REASON_NATURAL_POSITIVE;
         }
         if (!$this->redir) {

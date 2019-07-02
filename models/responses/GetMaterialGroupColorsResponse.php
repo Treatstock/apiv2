@@ -8,7 +8,7 @@ use treatstock\api\v2\models\ModelValidatorInterface;
 class GetMaterialGroupColorsResponse implements ModelValidatorInterface
 {
     /**
-     * Printing cost info
+     * Printing price info
      *
      * @var MaterialGroupColor[]
      */

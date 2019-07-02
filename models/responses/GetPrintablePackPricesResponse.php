@@ -2,7 +2,7 @@
 
 namespace treatstock\api\v2\models\responses;
 
-use treatstock\api\v2\models\CostInfo;
+use treatstock\api\v2\models\PriceInfo;
 use treatstock\api\v2\models\ModelValidatorInterface;
 
 /**
@@ -10,14 +10,14 @@ use treatstock\api\v2\models\ModelValidatorInterface;
  *
  * @package treatstock\api\v2
  */
-class GetPrintablePackCostsResponse implements ModelValidatorInterface
+class GetPrintablePackPricesResponse implements ModelValidatorInterface
 {
     /**
-     * Printing cost info
+     * Printing price info
      *
-     * @var CostInfo[]
+     * @var PriceInfo[]
      */
-    public $costsInfo;
+    public $pricesInfo;
 
     /**
      * @return array

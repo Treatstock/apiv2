@@ -2,7 +2,7 @@
 
 namespace treatstock\api\v2\models;
 
-class PrintablePackCost
+class PrintablePackPrice
 {
     /**
      * Material group code.
@@ -21,9 +21,9 @@ class PrintablePackCost
     public $color;
 
     /**
-     * Cost for printing
+     * Price for printing
      *
      * @var float
      */
-    public $cost;
+    public $price;
 }

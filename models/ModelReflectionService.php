@@ -8,6 +8,7 @@
 
 namespace treatstock\api\v2\models;
 
+use ReflectionClass;
 use ReflectionProperty;
 
 class ModelReflectionService
@@ -63,6 +64,20 @@ class ModelReflectionService
         }
         self::$attributeTypeCache[$modelClass][$attributeName] = $type;
         return $type;
+    }
+
+    public function getSimpleAttributesList($model)
+    {
+        $modelClass = get_class($model);
+        $attributes = [];
+        $reflection = new ReflectionClass($modelClass);
+        foreach ($reflection->getProperties() as $property) {
+            $type = $this->getAttributeType($model, $property->name);
+            if (in_array($type, ['string', 'int', 'float'])) {
+                $attributes[] = $property->name;
+            }
+        }
+        return $attributes;
     }
 
     /**

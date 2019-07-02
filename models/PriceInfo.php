@@ -2,7 +2,7 @@
 
 namespace treatstock\api\v2\models;
 
-class CostInfo
+class PriceInfo
 {
     /**
      * Printable pack id
@@ -27,6 +27,13 @@ class CostInfo
      * @var string
      */
     public $printer;
+
+    /**
+     * Printing printer id
+     *
+     * @var int
+     */
+    public $providerId;
 
     /**
      * Printing color code

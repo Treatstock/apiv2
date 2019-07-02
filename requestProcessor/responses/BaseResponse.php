@@ -47,8 +47,22 @@ abstract class BaseResponse
      */
     protected function checkForSuccess($httpData)
     {
+        if (!is_array($httpData)) {
+            throw new InvalidAnswerException('Invalid format, not array.');
+        }
         if (array_key_exists('success', $httpData) && (!$httpData['success'])) {
-            throw new InvalidAnswerException(json_encode($httpData['errors']));
+            $message = 'Unsuccessful operation';
+            $errors = [];
+            if (array_key_exists('errors', $httpData) && is_array($httpData['errors']) && $httpData['errors']) {
+                $errors = $httpData['errors'];
+            }
+            if (array_key_exists('message', $httpData) && $httpData['message']) {
+                $message .= ': ' . $httpData['message'];
+            }
+            throw new InvalidAnswerException($message, $errors);
+        }
+        if (array_key_exists('code', $httpData) && array_key_exists('name', $httpData) && array_key_exists('message', $httpData)) {
+            throw new InvalidAnswerException($httpData['name'] . ' ' . $httpData['message']);
         }
     }
 
@@ -71,6 +85,9 @@ abstract class BaseResponse
      */
     protected function loadAttributes($attributes, $model, $data)
     {
+        if (!$attributes) {
+            $attributes = $this->getModelReflectionService()->getSimpleAttributesList($model);
+        }
         foreach ($attributes as $attributeDataName => $attributeName) {
             if (((int)$attributeDataName) === $attributeDataName) {
                 // is int index
@@ -80,6 +97,17 @@ abstract class BaseResponse
             $value = $data[$attributeDataName];
             $valueFormatted = $this->getModelReflectionService()->formatAttributeValue($model, $attributeName, $value);
             $model->$attributeName = $valueFormatted;
+        }
+    }
+
+    protected function initClassAttributes($class, &$model, $data)
+    {
+        $model = new $class();
+        $attributes = $this->getModelReflectionService()->getSimpleAttributesList($model);
+        foreach ($attributes as $attributeName) {
+            if (array_key_exists($attributeName, $data)) {
+                $model->$attributeName = $data[$attributeName];
+            }
         }
     }
 }

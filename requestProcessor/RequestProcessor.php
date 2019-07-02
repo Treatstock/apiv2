@@ -1,4 +1,5 @@
 <?php
+
 namespace treatstock\api\v2\requestProcessor;
 
 use treatstock\api\v2\exceptions\InvalidAnswerException;
@@ -10,7 +11,7 @@ class RequestProcessor
     /**
      * @var bool
      */
-    public $isDebug;
+    public $isDebug = 0;
 
     /**
      * @param BaseRequest $httpRequest
@@ -20,7 +21,7 @@ class RequestProcessor
      */
     public function processRequest(BaseRequest $httpRequest, $httpResponseClass)
     {
-        $httpData = $this->processHttpRequest($httpRequest->getRequestUrl(), $httpRequest->getPostParams());
+        $httpData = $this->processHttpRequest($httpRequest->getRequestUrl(), $httpRequest->getPostParams(), $httpRequest->getMethod());
         if (!$httpData) {
             throw new InvalidAnswerException('Empty treatstock api answer');
         }
@@ -37,14 +38,20 @@ class RequestProcessor
     /**
      * @param string $url
      * @param array $postParams
+     * @param string $method
      * @return mixed
      */
-    protected function processHttpRequest($url, $postParams)
+    protected function processHttpRequest($url, $postParams, $method)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_URL, $url);
+
+        if ($method) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        }
+
         if ($postParams !== null) {
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postParams);
@@ -63,6 +70,10 @@ class RequestProcessor
         return $result | $err;
     }
 
+    protected function debugWrite($params)
+    {
+        echo \treatstock\api\v2\helpers\FormattedJson::encode($params);
+    }
 
     /**
      * @param $url
@@ -73,11 +84,13 @@ class RequestProcessor
      */
     protected function debugLog($url, $postParams, $result, $httpStatus, $err)
     {
-        echo "\nURL: '" . $url . "'";
-        echo "\nPost params: " . json_encode($postParams);
-        echo "\nAnswer: '" . $result . "'";
-        echo "\nHttp code: '" . $httpStatus . "'";
-        echo "\nHttp error: '" . $err . "'";
-        echo "\n";
+        $output = [
+            'URL' => $url,
+            'Post' =>  $postParams,
+            'Answer' => $result,
+            'HttpCode' => $httpStatus,
+            'HttpError' => $err,
+        ];
+        $this->debugWrite($output);
     }
 }

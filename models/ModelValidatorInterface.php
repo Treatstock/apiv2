@@ -17,5 +17,7 @@ interface ModelValidatorInterface {
 
     const REASON_NOT_INT = 'It is not int';
 
+    const REASON_NOT_ARRAY = 'It is not array';
+
     const REASON_NATURAL_POSITIVE = 'Should be positive natural';
 }
