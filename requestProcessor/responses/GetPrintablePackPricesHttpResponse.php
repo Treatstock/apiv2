@@ -32,6 +32,8 @@ class GetPrintablePackPricesHttpResponse extends BaseResponse
                 'printablePackId',
                 'url',
                 'providerId',
+                'rating',
+                'reviewsCount',
                 'materialGroup',
                 'color',
                 'price',

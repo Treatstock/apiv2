@@ -91,23 +91,27 @@ Get printable pack prices response:
 {
     "pricesInfo": [
         {
-            "printablePackId": 200037,
-            "materialGroup": "PLA",
-            "printer": "Bellair3D: Original Prusa i3 MK2",
-            "providerId": 2998,
-            "color": "Green",
-            "price": 5.74,
-            "url": "https://www.treatstock.com/model3d/preload-printable-pack?packPublicToken=cc849e5-ac24e04-fd2e25b&printerMaterialGroupId=16&printerColorId=1"
+            "printablePackId": 200596,
+            "materialGroup": "ABS",
+            "printer": "Schmidt Proto: JGAURORA Desktop 3D Printer",
+            "providerId": 4084,
+            "rating": 0,
+            "reviewsCount": 0,
+            "color": "VeryDarkBrown",
+            "price": 12.99,
+            "url": "http://ts.h3.tsdev.work/model3d/preload-printable-pack?packPublicToken=dd7774d-14cd878-ed2a9ab&printerMaterialGroupId=18&printerColorId=82"
         },
         {
-            "printablePackId": 200037,
-            "materialGroup": "PLA",
-            "printer": "Modern Blacksmith 3D Printing Services: Mytrix Dreamweaver 3735 Duo",
-            "providerId": 941,
-            "color": "Blue",
-            "price": 5.99,
-            "url": "https://www.treatstock.com/model3d/preload-printable-pack?packPublicToken=cc849e5-ac24e04-fd2e25b&printerMaterialGroupId=16&printerColorId=2"
-        },
+            "printablePackId": 200596,
+            "materialGroup": "Resin",
+            "printer": "Modern Blacksmith 3D Printing Services: Photon",
+            "providerId": 4274,
+            "rating": 4.8,
+            "reviewsCount": 47,
+            "color": "Yellow",
+            "price": 13.33,
+            "url": "http://ts.h3.tsdev.work/model3d/preload-printable-pack?packPublicToken=dd7774d-14cd878-ed2a9ab&printerMaterialGroupId=5&printerColorId=4"
+        }
      ....
      ]
 }  

@@ -35,6 +35,21 @@ class PriceInfo
      */
     public $providerId;
 
+
+    /**
+     * Provider rating
+     *
+     * @var float
+     */
+    public $rating;
+
+    /**
+     * Reviews count for provider
+     *
+     * @var int
+     */
+    public $reviewsCount;
+
     /**
      * Printing color code
      * Example: White
