@@ -37,16 +37,16 @@ class GetPrintablePackStatusHttpResponse extends BaseResponse
             'scaleUnit'       => 'scaleUnit',
         ];
         $this->loadAttributes($attributes, $this->model, $data);
-        if (array_key_exists('calculated_min_price', $data) && is_array($data['calculated_min_price'])) {
+        if (array_key_exists('calculated_min_cost', $data) && is_array($data['calculated_min_cost'])) {
             $this->model->calculatedMinPrice = new PrintablePackPrice();
 
             $this->loadAttributes(
                 ['materialGroup', 'color', 'price'],
                 $this->model->calculatedMinPrice,
-                $data['calculated_min_price']
+                $data['calculated_min_cost']
             );
         } else {
-            $this->model->calculatedMinPriceEmptyReason = $data['calculated_min_price']?$data['calculated_min_price']:$data['calculatedMinPriceEmptyReason'];
+            $this->model->calculatedMinPriceEmptyReason = $data['calculated_min_cost']?$data['calculated_min_cost']:$data['calculatedMinPriceEmptyReason'];
         }
 
         $this->initClassAttributes(PartSize::class, $this->model->largestPartSize, $data['largestPartSize']);
