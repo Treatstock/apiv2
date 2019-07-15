@@ -13,8 +13,8 @@
         "ext-curl": "*"
     },
     "autoload": {
-        "files": [
-            "Loader.php"
-        ]
+        "psr-4": {
+            "treatstock\\api\\v2\\": "/"
+        }
     }
 }
