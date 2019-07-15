@@ -102,6 +102,9 @@ abstract class BaseResponse
 
     protected function initClassAttributes($class, &$model, $data)
     {
+        if ($data === null) {
+            return;
+        }
         $model = new $class();
         $attributes = $this->getModelReflectionService()->getSimpleAttributesList($model);
         foreach ($attributes as $attributeName) {
