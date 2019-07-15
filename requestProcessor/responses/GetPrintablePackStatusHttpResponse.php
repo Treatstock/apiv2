@@ -41,7 +41,7 @@ class GetPrintablePackStatusHttpResponse extends BaseResponse
             $this->model->calculatedMinPrice = new PrintablePackPrice();
 
             $this->loadAttributes(
-                ['materialGroup', 'color', 'price'],
+                ['materialGroup', 'color', 'cost'],
                 $this->model->calculatedMinPrice,
                 $data['calculated_min_cost']
             );
