@@ -4,6 +4,7 @@ namespace treatstock\api\v2\requestProcessor\responses;
 
 use treatstock\api\v2\exceptions\InvalidAnswerException;
 use treatstock\api\v2\exceptions\InvalidAnswerModelException;
+use treatstock\api\v2\exceptions\UnSuccessException;
 use treatstock\api\v2\models\ModelReflectionService;
 use treatstock\api\v2\models\ModelValidatorInterface;
 
@@ -59,7 +60,10 @@ abstract class BaseResponse
             if (array_key_exists('message', $httpData) && $httpData['message']) {
                 $message .= ': ' . $httpData['message'];
             }
-            throw new InvalidAnswerException($message, $errors);
+            if (array_key_exists('reason', $httpData) && $httpData['reason']) {
+                $message .= ': ' . $httpData['reason'];
+            }
+            throw new UnSuccessException($message, $errors);
         }
         if (array_key_exists('code', $httpData) && array_key_exists('name', $httpData) && array_key_exists('message', $httpData)) {
             throw new InvalidAnswerException($httpData['name'] . ' ' . $httpData['message']);

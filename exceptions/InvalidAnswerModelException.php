@@ -10,7 +10,7 @@ namespace treatstock\api\v2\exceptions;
 
 use Throwable;
 
-class InvalidAnswerModelException extends \Exception
+class InvalidAnswerModelException extends TreatstockException
 {
     /** @var object */
     public $model;
