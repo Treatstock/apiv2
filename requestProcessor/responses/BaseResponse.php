@@ -45,6 +45,7 @@ abstract class BaseResponse
     /**
      * @param $httpData
      * @throws InvalidAnswerException
+     * @throws UnSuccessException
      */
     protected function checkForSuccess($httpData)
     {

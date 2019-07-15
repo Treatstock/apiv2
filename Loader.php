@@ -48,8 +48,12 @@ include 'requestProcessor/responses/GetPrintablePackOffersHttpResponse.php';
 
 include 'requestProcessor/RequestProcessor.php';
 
+include 'exceptions/TreatstockException.php';
 include 'exceptions/InvalidAnswerException.php';
 include 'exceptions/InvalidAnswerModelException.php';
+include 'exceptions/UnSuccessException.php';
+
+
 
 include 'helpers/FormattedJson.php';
 
