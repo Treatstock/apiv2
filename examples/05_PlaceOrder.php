@@ -8,7 +8,7 @@ $apiService = new \treatstock\api\v2\TreatstockApiService($privateKey);
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
-$createRequest->filePaths[] = './test.stl';
+$createRequest->filePaths[] = __DIR__.'/test.stl';
 $createRequest->locationCountryIso = 'US'; // Optional params: to get printable pack price info
 
 echo "\nSend create printable pack request...";
@@ -27,7 +27,6 @@ echo "\nFirst printable pack price response:\n";
 $firstPrice = reset($pricesResponse->pricesInfo);
 echo \treatstock\api\v2\helpers\FormattedJson::encode($firstPrice);
 
-$apiService->setDebugMode(true);
 $placeOrderRequest =new \treatstock\api\v2\models\requests\PlaceOrderRequest();
 $placeOrderRequest->printablePackId =$createResponse->id;
 $placeOrderRequest->modelTextureInfo = new \treatstock\api\v2\models\ModelTextureInfo();

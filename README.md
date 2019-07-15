@@ -30,7 +30,7 @@ Let's make a simple request for creating a printable pack. The request must cont
 
 <pre>
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
-$createRequest->filePaths[] = './test.stl';
+$createRequest->filePaths[] = __DIR__.'/test.stl';
 $createRequest->locationCountryIso = 'US'; // Optional params: to get printable pack price info
 echo "\nSend create printable pack request...";
 $createResponse = $apiService->createPrintablePack($createRequest);
@@ -218,7 +218,7 @@ instead of
 
 * It is possible to use zip files and URLs for large 3D models, so Treatsock will download the files via links provided. To use this feature, replace the following code:
 <pre>
-$createRequest->filePaths[] = './test.stl';
+$createRequest->filePaths[] = __DIR__.'/test.stl';
 </pre>
 
 instead of 

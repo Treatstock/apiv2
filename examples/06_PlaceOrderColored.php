@@ -7,8 +7,8 @@ $apiService = new \treatstock\api\v2\TreatstockApiService($privateKey, 'http://t
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
-$createRequest->filePaths[] = './test.stl';
-$createRequest->filePaths[] = './test2.stl';
+$createRequest->filePaths[] = __DIR__.'/test.stl';
+$createRequest->filePaths[] = __DIR__.'/test2.stl';
 $createRequest->locationCountryIso = 'US'; // Optional params: to get printable pack price info
 
 echo "\nSend create printable pack request...";

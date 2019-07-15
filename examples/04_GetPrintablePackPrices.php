@@ -8,7 +8,7 @@ $apiService->setDebugMode(true);
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
-$createRequest->filePaths[] = './test.stl';
+$createRequest->filePaths[] = __DIR__.'/test.stl';
 $createRequest->locationCountryIso = 'US'; // Optional params: to get printable pack price info
 
 echo "\nSend create printable pack request...";
