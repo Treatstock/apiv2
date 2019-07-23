@@ -7,6 +7,7 @@ use treatstock\api\v2\models\requests\CreatePrintablePackRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackOffersRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackPricesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackStatusRequest;
+use treatstock\api\v2\models\requests\PayOrderRequest;
 use treatstock\api\v2\models\requests\PlaceOrderRequest;
 use treatstock\api\v2\models\responses\CreatePrintablePackResponse;
 use treatstock\api\v2\models\responses\GetMaterialGroupColorsResponse;
@@ -22,6 +23,7 @@ use treatstock\api\v2\requestProcessor\requests\GetMaterialGroupColorsHttpReques
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackOffersHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackPricesHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackStatusHttpRequest;
+use treatstock\api\v2\requestProcessor\requests\PayOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PlaceOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\responses\ChangePrintablePackHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\CreatePrintablePackHttpResponse;
@@ -29,6 +31,7 @@ use treatstock\api\v2\requestProcessor\responses\GetMaterialGroupColorsHttpRespo
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackOffersHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackPricesHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackStatusHttpResponse;
+use treatstock\api\v2\requestProcessor\responses\PayOrderHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PlaceOrderHttpResponse;
 
 
@@ -132,6 +135,19 @@ class TreatstockApiService
         $response = $this->getRequestProcessor()->processRequest($httpRequest, PlaceOrderHttpResponse::class);
         return $response->model;
     }
+
+    /**
+     * @param PayOrderRequest $payOrderRequest
+     * @return mixed
+     * @throws exceptions\InvalidAnswerException
+     */
+    public function payOrder(PayOrderRequest $payOrderRequest)
+    {
+        $httpRequest = new PayOrderHttpRequest($this->privateKey, $payOrderRequest, $this->apiUrl);
+        $response = $this->getRequestProcessor()->processRequest($httpRequest, PayOrderHttpResponse::class);
+        return $response->model;
+    }
+
 
     /**
      * @param ChangePrintablePackRequest $changePrintablePackRequest
