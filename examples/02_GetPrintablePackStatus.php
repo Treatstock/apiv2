@@ -4,7 +4,7 @@ include '../Loader.php';
 
 $privateKey = '15ce76a20be443acfeae731cbc27dc';
 $apiService = new \treatstock\api\v2\TreatstockApiService($privateKey);
-//$apiService->setDebugMode(true);
+$apiService->setDebugMode(true);
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
