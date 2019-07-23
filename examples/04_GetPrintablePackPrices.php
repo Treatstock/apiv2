@@ -3,8 +3,8 @@
 include '../Loader.php';
 
 $privateKey = '15ce76a20be443acfeae731cbc27dc';
-$apiService = new \treatstock\api\v2\TreatstockApiService($privateKey, 'http://ts.h3.tsdev.work');
-$apiService->setDebugMode(true);
+$apiService = new \treatstock\api\v2\TreatstockApiService($privateKey);
+//$apiService->setDebugMode(true);
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
