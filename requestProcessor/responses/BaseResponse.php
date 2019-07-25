@@ -6,7 +6,6 @@ use treatstock\api\v2\exceptions\InvalidAnswerException;
 use treatstock\api\v2\exceptions\InvalidAnswerModelException;
 use treatstock\api\v2\exceptions\UnSuccessException;
 use treatstock\api\v2\models\ModelReflectionService;
-use treatstock\api\v2\models\ModelValidatorInterface;
 
 abstract class BaseResponse
 {
@@ -67,7 +66,7 @@ abstract class BaseResponse
             throw new UnSuccessException($message, $errors);
         }
         if (array_key_exists('code', $httpData) && array_key_exists('name', $httpData) && array_key_exists('message', $httpData)) {
-            throw new InvalidAnswerException($httpData['name'] . ' ' . $httpData['message']);
+            throw new InvalidAnswerException($httpData['name'] . ' ' . $httpData['message'].".\n");
         }
     }
 
