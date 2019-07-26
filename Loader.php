@@ -11,6 +11,7 @@ include 'models/PartSize.php';
 include 'models/Texture.php';
 include 'models/ClientLocation.php';
 include 'models/ShippingAddress.php';
+include 'models/ValidatedAddress.php';
 include 'models/ModelTextureInfo.php';
 include 'models/PrintOffer.php';
 include 'models/requests/CreatePrintablePackRequest.php';
@@ -56,8 +57,6 @@ include 'exceptions/TreatstockException.php';
 include 'exceptions/InvalidAnswerException.php';
 include 'exceptions/InvalidAnswerModelException.php';
 include 'exceptions/UnSuccessException.php';
-
-
 
 include 'helpers/FormattedJson.php';
 

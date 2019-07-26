@@ -9,6 +9,7 @@
 namespace treatstock\api\v2\requestProcessor\responses;
 
 use treatstock\api\v2\models\responses\PlaceOrderResponse;
+use treatstock\api\v2\models\ValidatedAddress;
 
 class PlaceOrderHttpResponse extends BaseResponse
 {
@@ -26,5 +27,9 @@ class PlaceOrderHttpResponse extends BaseResponse
     {
         $attributes = ['orderId', 'total', 'url'];
         $this->loadAttributes($attributes, $this->model, $data);
+        if (array_key_exists('validatedAddress', $data)) {
+            $this->model->validatedAddress = new ValidatedAddress();
+            $this->loadAttributes([], $this->model->validatedAddress, $data['validatedAddress']);
+        }
     }
 }
