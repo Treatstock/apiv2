@@ -50,8 +50,6 @@ $placeOrderResponse = $apiService->placeOrder($placeOrderRequest);
 echo "\nPlace order response:\n";
 echo \treatstock\api\v2\helpers\FormattedJson::encode($placeOrderResponse);
 
-// Not published yet
-$apiService->setDebugMode(true);
 $payOrderRequest = new \treatstock\api\v2\models\requests\PayOrderRequest();
 $payOrderRequest->orderId = $placeOrderResponse->orderId;
 $payOrderRequest->total = $placeOrderResponse->total;

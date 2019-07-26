@@ -190,6 +190,102 @@ Output example:
 }
 </pre>
 
+<h2>Pay order</h2>
+You can pay order using treatstock account balance.
+This should be used after a order created:
+<pre>
+$payOrderRequest = new \treatstock\api\v2\models\requests\PayOrderRequest();
+$payOrderRequest->orderId = $placeOrderResponse->orderId;
+$payOrderRequest->total = $placeOrderResponse->total;
+$payOrderResponse = $apiService->payOrder($payOrderRequest);
+echo "\nPay order response:\n";
+echo \treatstock\api\v2\helpers\FormattedJson::encode($payOrderResponse);
+</pre>
+
+Output example:
+<pre>
+Pay order response:
+{
+    "orderId": 46004,
+    "total": 12.26,
+    "invoiceUuid": "7PBR4J"
+}
+</pre>
+
+
+<h2>Send and Receive messages</h2>
+After order is payed, you can contact via messages with Printing company.
+
+Receive messages example:
+
+<pre>
+$getMessagesRequest = new \treatstock\api\v2\models\requests\GetMessagesRequest();
+$getMessagesRequest->orderId = $placeOrderResponse->orderId;
+$getMessagesResponse = $apiService->getMessages($getMessagesRequest);
+echo "\n\nGet messages response:\n";
+echo \treatstock\api\v2\helpers\FormattedJson::encode($getMessagesResponse);
+</pre>
+
+Output example:
+<pre>
+Get messages response:
+{
+    "topics": [
+        {
+            "id": 38386,
+            "creatorUid": "pXL9Hv",
+            "creatorTitle": "nikolaj",
+            "createdAt": "2019-07-26 13:37:07",
+            "title": "Order #46005",
+            "lastMessageTime": "2019-07-26 13:37:07",
+            "orderId": 46005,
+            "messages": [
+                {
+                    "id": 114989,
+                    "userUid": "pXL9Hv",
+                    "userTitle": "nikolaj",
+                    "createdAt": "2019-07-26 13:37:07",
+                    "text": "Hi! What about my order?",
+                    "topicId": 38386,
+                    "files": null
+                }
+            ]
+        }
+    ]
+}
+</pre>
+
+You will receive list of topics with attached messages.  
+
+
+Sending message example:
+
+<pre>
+$sendMessageRequest = new \treatstock\api\v2\models\requests\SendMessageRequest();
+$sendMessageRequest->orderId = $placeOrderResponse->orderId;
+$sendMessageRequest->messageText = 'Hi! What about my order?';
+$sendMessageResponse = $apiService->sendMessage($sendMessageRequest);
+echo "\nSend message response:\n";
+echo \treatstock\api\v2\helpers\FormattedJson::encode($sendMessageResponse);
+</pre>
+
+Output example:
+<pre>
+{
+    "id": 114989,
+    "userUid": "pXL9Hv",
+    "userTitle": "nikolaj",
+    "createdAt": "2019-07-26 13:37:07",
+    "text": "Hi! What about my order?",
+    "topicId": 38386,
+    "files": []
+}
+</pre>
+
+Every message attached to message topic. If printing company will be changed, you will have second message topic.
+Files list contains filename, and download file url (available for one hour).
+
+
 <h2>Additional Features</h2>
 
 * You can use the code "material" instead of "materialGroup" for printing a specific material rather than placing an order for any available material in the group (for example, to narrow your choice to “PLA+” instead of every filament in the range of “PLA”).
