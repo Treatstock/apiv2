@@ -98,10 +98,11 @@ abstract class BaseResponse
                 // is int index
                 $attributeDataName = $attributeName;
             }
-
-            $value = $data[$attributeDataName];
-            $valueFormatted = $this->getModelReflectionService()->formatAttributeValue($model, $attributeName, $value);
-            $model->$attributeName = $valueFormatted;
+            if (array_key_exists($attributeName, $data)) {
+                $value = $data[$attributeDataName];
+                $valueFormatted = $this->getModelReflectionService()->formatAttributeValue($model, $attributeName, $value);
+                $model->$attributeName = $valueFormatted;
+            }
         }
     }
 
