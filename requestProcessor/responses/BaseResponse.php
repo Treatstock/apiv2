@@ -22,8 +22,9 @@ abstract class BaseResponse
      * BaseResponse constructor.
      *
      * @param $httpData
-     * @throws InvalidAnswerModelException
      * @throws InvalidAnswerException
+     * @throws InvalidAnswerModelException
+     * @throws UnSuccessException
      */
     public function __construct($httpData)
     {

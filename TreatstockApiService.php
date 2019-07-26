@@ -4,35 +4,43 @@ namespace treatstock\api\v2;
 
 use treatstock\api\v2\models\requests\ChangePrintablePackRequest;
 use treatstock\api\v2\models\requests\CreatePrintablePackRequest;
+use treatstock\api\v2\models\requests\GetMessagesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackOffersRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackPricesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackStatusRequest;
 use treatstock\api\v2\models\requests\PayOrderRequest;
 use treatstock\api\v2\models\requests\PlaceOrderRequest;
+use treatstock\api\v2\models\requests\SendMessageRequest;
 use treatstock\api\v2\models\responses\CreatePrintablePackResponse;
 use treatstock\api\v2\models\responses\GetMaterialGroupColorsResponse;
 use treatstock\api\v2\models\responses\GetPrintablePackOffersResponse;
 use treatstock\api\v2\models\responses\GetPrintablePackPricesResponse;
 use treatstock\api\v2\models\responses\GetPrintablePackStatusResponse;
+use treatstock\api\v2\models\responses\PayOrderResponse;
 use treatstock\api\v2\models\responses\PlaceOrderResponse;
+use treatstock\api\v2\models\responses\SendMessageResponse;
 use treatstock\api\v2\models\responses\SuccessFlagResponse;
 use treatstock\api\v2\requestProcessor\RequestProcessor;
 use treatstock\api\v2\requestProcessor\requests\ChangePrintablePackHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\CreatePrintablePackHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetMaterialGroupColorsHttpRequest;
+use treatstock\api\v2\requestProcessor\requests\GetMessagesHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackOffersHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackPricesHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackStatusHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PayOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PlaceOrderHttpRequest;
+use treatstock\api\v2\requestProcessor\requests\SendMessageHttpRequest;
 use treatstock\api\v2\requestProcessor\responses\ChangePrintablePackHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\CreatePrintablePackHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetMaterialGroupColorsHttpResponse;
+use treatstock\api\v2\requestProcessor\responses\GetMessagesHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackOffersHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackPricesHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackStatusHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PayOrderHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PlaceOrderHttpResponse;
+use treatstock\api\v2\requestProcessor\responses\SendMessageHttpResponse;
 
 
 /**
@@ -138,7 +146,7 @@ class TreatstockApiService
 
     /**
      * @param PayOrderRequest $payOrderRequest
-     * @return mixed
+     * @return PayOrderResponse
      * @throws exceptions\InvalidAnswerException
      */
     public function payOrder(PayOrderRequest $payOrderRequest)
@@ -181,6 +189,29 @@ class TreatstockApiService
     {
         $httpRequest = new GetMaterialGroupColorsHttpRequest($this->privateKey, null, $this->apiUrl);
         $response = $this->getRequestProcessor()->processRequest($httpRequest, GetMaterialGroupColorsHttpResponse::class);
+        return $response->model;
+    }
+
+    /**
+     * @param SendMessageRequest $sendMessageRequest
+     * @return SendMessageResponse
+     * @throws exceptions\InvalidAnswerException
+     */
+    public function sendMessage(SendMessageRequest $sendMessageRequest)
+    {
+        $httpRequest = new SendMessageHttpRequest($this->privateKey, $sendMessageRequest, $this->apiUrl);
+        $response = $this->getRequestProcessor()->processRequest($httpRequest, SendMessageHttpResponse::class);
+        return $response->model;
+    }
+
+    /**
+     * @param GetMessagesRequest $getMessagesRequest
+     * @throws exceptions\InvalidAnswerException
+     */
+    public function getMessages(GetMessagesRequest $getMessagesRequest)
+    {
+        $httpRequest = new GetMessagesHttpRequest($this->privateKey, $getMessagesRequest, $this->apiUrl);
+        $response = $this->getRequestProcessor()->processRequest($httpRequest, GetMessagesHttpResponse::class);
         return $response->model;
     }
 

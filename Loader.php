@@ -13,6 +13,10 @@ include 'models/ClientLocation.php';
 include 'models/ShippingAddress.php';
 include 'models/ModelTextureInfo.php';
 include 'models/PrintOffer.php';
+include 'models/MsgTopic.php';
+include 'models/MsgMessage.php';
+include 'models/MsgMessageFile.php';
+
 include 'models/requests/CreatePrintablePackRequest.php';
 include 'models/requests/ChangePrintablePackRequest.php';
 include 'models/requests/GetPrintablePackStatusRequest.php';
@@ -20,6 +24,8 @@ include 'models/requests/GetPrintablePackPricesRequest.php';
 include 'models/requests/PlaceOrderRequest.php';
 include 'models/requests/GetPrintablePackOffersRequest.php';
 include 'models/requests/PayOrderRequest.php';
+include 'models/requests/SendMessageRequest.php';
+include 'models/requests/GetMessagesRequest.php';
 
 include 'models/responses/CreatePrintablePackResponse.php';
 include 'models/responses/SuccessFlagResponse.php';
@@ -29,6 +35,8 @@ include 'models/responses/GetMaterialGroupColorsResponse.php';
 include 'models/responses/PlaceOrderResponse.php';
 include 'models/responses/GetPrintablePackOffersResponse.php';
 include 'models/responses/PayOrderResponse.php';
+include 'models/responses/SendMessageResponse.php';
+include 'models/responses/GetMessagesResponse.php';
 
 include 'requestProcessor/requests/BaseRequest.php';
 include 'requestProcessor/requests/PlaceOrderHttpRequest.php';
@@ -39,6 +47,8 @@ include 'requestProcessor/requests/GetPrintablePackPricesHttpRequest.php';
 include 'requestProcessor/requests/GetMaterialGroupColorsHttpRequest.php';
 include 'requestProcessor/requests/GetPrintablePackOffersHttpRequest.php';
 include 'requestProcessor/requests/PayOrderHttpRequest.php';
+include 'requestProcessor/requests/SendMessageHttpRequest.php';
+include 'requestProcessor/requests/GetMessagesHttpRequest.php';
 
 include 'requestProcessor/responses/BaseResponse.php';
 include 'requestProcessor/responses/PlaceOrderHttpResponse.php';
@@ -49,6 +59,8 @@ include 'requestProcessor/responses/GetPrintablePackPricesHttpResponse.php';
 include 'requestProcessor/responses/GetMaterialGroupColorsHttpResponse.php';
 include 'requestProcessor/responses/GetPrintablePackOffersHttpResponse.php';
 include 'requestProcessor/responses/PayOrderHttpResponse.php';
+include 'requestProcessor/responses/SendMessageHttpResponse.php';
+include 'requestProcessor/responses/GetMessagesHttpResponse.php';
 
 include 'requestProcessor/RequestProcessor.php';
 
