@@ -212,6 +212,18 @@ Pay order response:
 }
 </pre>
 
+<h2>Receipt</h2>
+You can get payed order receipt.
+<pre>
+$receiptRequest = new \treatstock\api\v2\models\requests\ReceiptRequest();
+$receiptRequest->orderId = $placeOrderResponse->orderId;
+$receiptResponse = $apiService->downloadReceipt($receiptRequest);
+$filename = 'receipt-' . $placeOrderResponse->orderId . '.pdf';
+echo "\n\nRecipt downloaded as: " . $filename . "\n";
+file_put_contents($filename, $receiptResponse->receiptPdfContent);
+</pre>
+
+Will save receipt pdf file in current directory.
 
 <h2>Send and Receive messages</h2>
 After order is payed, you can contact via messages with Printing company.

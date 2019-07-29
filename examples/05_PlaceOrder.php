@@ -61,6 +61,6 @@ $receiptRequest = new \treatstock\api\v2\models\requests\ReceiptRequest();
 $receiptRequest->orderId = $placeOrderResponse->orderId;
 $receiptResponse = $apiService->downloadReceipt($receiptRequest);
 $filename = 'receipt-' . $placeOrderResponse->orderId . '.pdf';
-echo "\n\nRecipt downloaded as: " . $filename . "\n";
+echo "\n\nReceipt downloaded as: " . $filename . "\n";
 file_put_contents($filename, $receiptResponse->receiptPdfContent);
 
