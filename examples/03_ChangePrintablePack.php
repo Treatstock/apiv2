@@ -16,6 +16,8 @@ $createResponse = $apiService->createPrintablePack($createRequest);
 echo "\nCreated, printable pack id: ".$createResponse->id."\n";
 
 
+// Sleep 5 sec, waiting for model calculations
+sleep(5);
 
 // Change printable pack Qty
 $changePackRequest = new \treatstock\api\v2\models\requests\ChangePrintablePackRequest();

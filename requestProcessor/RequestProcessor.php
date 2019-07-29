@@ -70,11 +70,6 @@ class RequestProcessor
         return $result | $err;
     }
 
-    protected function debugWrite($params)
-    {
-        echo \treatstock\api\v2\helpers\FormattedJson::encode($params);
-    }
-
     /**
      * @param $url
      * @param $postParams
@@ -84,13 +79,41 @@ class RequestProcessor
      */
     protected function debugLog($url, $postParams, $result, $httpStatus, $err)
     {
+        if (is_string($postParams)) {
+            parse_str($postParams, $postParamsArray);
+        } else {
+            $postParamsArray = $postParams;
+        }
+
+        if (!$postParams) {
+            echo "\nGet request URL: " . $url;
+        } else {
+            echo "\nPost request URL: " . $url;
+            echo "\nPost params: \n";
+            echo \treatstock\api\v2\helpers\FormattedJson::encode($postParamsArray);
+        }
+        echo "\nResponse:\n";
+        $jsonDecoded = json_decode($result, true);
+        if ($jsonDecoded) {
+            // Answer is json
+            echo \treatstock\api\v2\helpers\FormattedJson::encode($jsonDecoded);
+        } else {
+            // Not json, simple output
+            echo $result;
+        }
+        echo "\nHttp code: " . $httpStatus;
+        if ($err) {
+            echo "\nHttp error: " . $err;
+        }
+        echo "\n";
+        // Data for mysql insert
+        /*
         $output = [
-            'URL' => $url,
-            'Post' =>  $postParams,
-            'Answer' => $result,
-            'HttpCode' => $httpStatus,
-            'HttpError' => $err,
-        ];
-        $this->debugWrite($output);
+            'url' => $url,
+            'post' =>  $postParamsArray,
+            'answer' => $result,
+            'httpCode' => $httpStatus,
+            'httpError' => $err,
+        ];*/
     }
 }

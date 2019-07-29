@@ -4,6 +4,7 @@ include '../Loader.php';
 
 $privateKey = '15ce76a20be443acfeae731cbc27dc';
 $apiService = new \treatstock\api\v2\TreatstockApiService($privateKey);
+//$apiService->setDebugMode(true);
 
 // Try create printable pack
 $createRequest = new \treatstock\api\v2\models\requests\CreatePrintablePackRequest();
@@ -13,7 +14,7 @@ $createRequest->locationCountryIso = 'US'; // Optional params: to get printable 
 
 echo "\nSend create printable pack request...";
 $createResponse = $apiService->createPrintablePack($createRequest);
-echo "\nCreated, printable pack id: " . $createResponse->id . "\n";
+echo "\nCreated, printable pack id: " . $createResponse->id;
 
 $partId1 = $createResponse->parts[0];
 $partId1Uid = $partId1->uid;
@@ -32,9 +33,9 @@ $changePackRequest->textureInfo->partsMaterial[$partId1Uid]->color = 'Red';
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid] = new \treatstock\api\v2\models\Texture();
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid]->materialGroup = 'PLA'; // This is case sensitive, you can get with codes using example 10_GetMaterialGroupColors.php
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid]->color = 'Blue';
-echo "\nChange printable pack colors request.\n";
+echo "\n\n\nChange printable pack colors request.";
 $changePrintablePackResponse = $apiService->changePrintablePack($changePackRequest); // If request failed, it will have exception
-echo "Changed.\n";
+echo "\nChanged.\n";
 
 // Sleep 5 sec, waiting for model size calculations
 sleep(5);

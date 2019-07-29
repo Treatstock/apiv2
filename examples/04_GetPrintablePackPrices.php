@@ -13,13 +13,13 @@ $createRequest->locationCountryIso = 'US'; // Optional params: to get printable 
 
 echo "\nSend create printable pack request...";
 $createResponse = $apiService->createPrintablePack($createRequest);
-echo "\nCreated, printable pack id: ".$createResponse->id."\n";
+echo "\nCreated, printable pack id: ".$createResponse->id;
 
 // Sleep 5 sec, waiting for model calculations
 sleep(5);
 
 // Try get printable pack prices
-echo "\nGet printable pack prices...";
+echo "\n\nGet printable pack prices...";
 $pricesRequest = new \treatstock\api\v2\models\requests\GetPrintablePackPricesRequest();
 $pricesRequest->printablePackId = $createResponse->id;
 $pricesResponse = $apiService->getPrintablePackPrices($pricesRequest);
