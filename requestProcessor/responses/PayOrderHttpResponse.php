@@ -14,6 +14,7 @@ use treatstock\api\v2\models\responses\PayOrderResponse;
  * Class PayOrderHttpResponse
  *
  * @package treatstock\api\v2\requestProcessor\responses
+ * @property PayOrderResponse $model
  */
 class PayOrderHttpResponse extends BaseResponse
 {

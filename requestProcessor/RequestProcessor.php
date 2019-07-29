@@ -23,11 +23,11 @@ class RequestProcessor
     {
         $httpData = $this->processHttpRequest($httpRequest->getRequestUrl(), $httpRequest->getPostParams(), $httpRequest->getMethod());
         if (!$httpData) {
-            throw new InvalidAnswerException('Empty treatstock api answer');
+            throw new InvalidAnswerException('Empty answer');
         }
         $httpJson = json_decode($httpData, true);
-        if (!$httpData) {
-            throw new InvalidAnswerException('Invalid json api answer');
+        if (!$httpJson) {
+            throw new InvalidAnswerException('Not json format');
         }
 
         /** @var BaseResponse $response */
@@ -41,7 +41,7 @@ class RequestProcessor
      * @param string $method
      * @return mixed
      */
-    protected function processHttpRequest($url, $postParams, $method)
+    public function processHttpRequest($url, $postParams, $method)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -99,7 +99,11 @@ class RequestProcessor
             echo \treatstock\api\v2\helpers\FormattedJson::encode($jsonDecoded);
         } else {
             // Not json, simple output
-            echo $result;
+            if (strlen($result)>300) {
+                echo substr($result,0,300).'...';
+            } else {
+                echo $result;
+            }
         }
         echo "\nHttp code: " . $httpStatus;
         if ($err) {

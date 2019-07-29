@@ -25,6 +25,7 @@ include 'models/requests/GetPrintablePackPricesRequest.php';
 include 'models/requests/PlaceOrderRequest.php';
 include 'models/requests/GetPrintablePackOffersRequest.php';
 include 'models/requests/PayOrderRequest.php';
+include 'models/requests/ReceiptRequest.php';
 include 'models/requests/SendMessageRequest.php';
 include 'models/requests/GetMessagesRequest.php';
 
@@ -36,6 +37,7 @@ include 'models/responses/GetMaterialGroupColorsResponse.php';
 include 'models/responses/PlaceOrderResponse.php';
 include 'models/responses/GetPrintablePackOffersResponse.php';
 include 'models/responses/PayOrderResponse.php';
+include 'models/responses/ReceiptResponse.php';
 include 'models/responses/SendMessageResponse.php';
 include 'models/responses/GetMessagesResponse.php';
 
@@ -48,6 +50,7 @@ include 'requestProcessor/requests/GetPrintablePackPricesHttpRequest.php';
 include 'requestProcessor/requests/GetMaterialGroupColorsHttpRequest.php';
 include 'requestProcessor/requests/GetPrintablePackOffersHttpRequest.php';
 include 'requestProcessor/requests/PayOrderHttpRequest.php';
+include 'requestProcessor/requests/ReceiptHttpRequest.php';
 include 'requestProcessor/requests/SendMessageHttpRequest.php';
 include 'requestProcessor/requests/GetMessagesHttpRequest.php';
 
@@ -60,6 +63,7 @@ include 'requestProcessor/responses/GetPrintablePackPricesHttpResponse.php';
 include 'requestProcessor/responses/GetMaterialGroupColorsHttpResponse.php';
 include 'requestProcessor/responses/GetPrintablePackOffersHttpResponse.php';
 include 'requestProcessor/responses/PayOrderHttpResponse.php';
+include 'requestProcessor/responses/ReceiptHttpResponse.php';
 include 'requestProcessor/responses/SendMessageHttpResponse.php';
 include 'requestProcessor/responses/GetMessagesHttpResponse.php';
 

@@ -2,6 +2,7 @@
 
 namespace treatstock\api\v2;
 
+use treatstock\api\v2\exceptions\InvalidAnswerException;
 use treatstock\api\v2\models\requests\ChangePrintablePackRequest;
 use treatstock\api\v2\models\requests\CreatePrintablePackRequest;
 use treatstock\api\v2\models\requests\GetMessagesRequest;
@@ -10,6 +11,7 @@ use treatstock\api\v2\models\requests\GetPrintablePackPricesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackStatusRequest;
 use treatstock\api\v2\models\requests\PayOrderRequest;
 use treatstock\api\v2\models\requests\PlaceOrderRequest;
+use treatstock\api\v2\models\requests\ReceiptRequest;
 use treatstock\api\v2\models\requests\SendMessageRequest;
 use treatstock\api\v2\models\responses\CreatePrintablePackResponse;
 use treatstock\api\v2\models\responses\GetMaterialGroupColorsResponse;
@@ -18,6 +20,7 @@ use treatstock\api\v2\models\responses\GetPrintablePackPricesResponse;
 use treatstock\api\v2\models\responses\GetPrintablePackStatusResponse;
 use treatstock\api\v2\models\responses\PayOrderResponse;
 use treatstock\api\v2\models\responses\PlaceOrderResponse;
+use treatstock\api\v2\models\responses\ReceiptResponse;
 use treatstock\api\v2\models\responses\SendMessageResponse;
 use treatstock\api\v2\models\responses\SuccessFlagResponse;
 use treatstock\api\v2\requestProcessor\RequestProcessor;
@@ -30,7 +33,9 @@ use treatstock\api\v2\requestProcessor\requests\GetPrintablePackPricesHttpReques
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackStatusHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PayOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PlaceOrderHttpRequest;
+use treatstock\api\v2\requestProcessor\requests\ReceiptHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\SendMessageHttpRequest;
+use treatstock\api\v2\requestProcessor\responses\BaseResponse;
 use treatstock\api\v2\requestProcessor\responses\ChangePrintablePackHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\CreatePrintablePackHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetMaterialGroupColorsHttpResponse;
@@ -40,6 +45,7 @@ use treatstock\api\v2\requestProcessor\responses\GetPrintablePackPricesHttpRespo
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackStatusHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PayOrderHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PlaceOrderHttpResponse;
+use treatstock\api\v2\requestProcessor\responses\ReceiptHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\SendMessageHttpResponse;
 
 
@@ -154,6 +160,25 @@ class TreatstockApiService
         $httpRequest = new PayOrderHttpRequest($this->privateKey, $payOrderRequest, $this->apiUrl);
         $response = $this->getRequestProcessor()->processRequest($httpRequest, PayOrderHttpResponse::class);
         return $response->model;
+    }
+
+    /**
+     * @param ReceiptRequest $receiptRequest
+     * @return ReceiptResponse
+     * @throws InvalidAnswerException
+     * @throws exceptions\InvalidAnswerModelException
+     * @throws exceptions\UnSuccessException
+     */
+    public function downloadReceipt(ReceiptRequest $receiptRequest)
+    {
+        $httpRequest = new ReceiptHttpRequest($this->privateKey, $receiptRequest, $this->apiUrl);
+        $httpData = $this->getRequestProcessor()->processHttpRequest($httpRequest->getRequestUrl(), $httpRequest->getPostParams(), $httpRequest->getMethod());
+        if (!$httpData) {
+            throw new InvalidAnswerException('Empty answer');
+        }
+        $httpResponse = new ReceiptHttpResponse($httpData);
+        return $httpResponse->model;
+
     }
 
 
