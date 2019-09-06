@@ -9,6 +9,7 @@ use treatstock\api\v2\models\requests\GetMessagesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackOffersRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackPricesRequest;
 use treatstock\api\v2\models\requests\GetPrintablePackStatusRequest;
+use treatstock\api\v2\models\requests\OrderStatusRequest;
 use treatstock\api\v2\models\requests\PayOrderRequest;
 use treatstock\api\v2\models\requests\PlaceOrderRequest;
 use treatstock\api\v2\models\requests\ReceiptRequest;
@@ -31,6 +32,7 @@ use treatstock\api\v2\requestProcessor\requests\GetMessagesHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackOffersHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackPricesHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\GetPrintablePackStatusHttpRequest;
+use treatstock\api\v2\requestProcessor\requests\OrderStatusHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PayOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\PlaceOrderHttpRequest;
 use treatstock\api\v2\requestProcessor\requests\ReceiptHttpRequest;
@@ -43,6 +45,7 @@ use treatstock\api\v2\requestProcessor\responses\GetMessagesHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackOffersHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackPricesHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\GetPrintablePackStatusHttpResponse;
+use treatstock\api\v2\requestProcessor\responses\OrderStatusHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PayOrderHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\PlaceOrderHttpResponse;
 use treatstock\api\v2\requestProcessor\responses\ReceiptHttpResponse;
@@ -161,6 +164,19 @@ class TreatstockApiService
         $response = $this->getRequestProcessor()->processRequest($httpRequest, PayOrderHttpResponse::class);
         return $response->model;
     }
+
+    /**
+     * @param OrderStatusRequest $orderStatusRequest
+     * @return mixed
+     * @throws InvalidAnswerException
+     */
+    public function getOrderStatus(OrderStatusRequest $orderStatusRequest)
+    {
+        $httpRequest = new OrderStatusHttpRequest($this->privateKey, $orderStatusRequest, $this->apiUrl);
+        $response = $this->getRequestProcessor()->processRequest($httpRequest, OrderStatusHttpResponse::class);
+        return $response->model;
+    }
+
 
     /**
      * @param ReceiptRequest $receiptRequest

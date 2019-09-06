@@ -28,6 +28,7 @@ include 'models/requests/PayOrderRequest.php';
 include 'models/requests/ReceiptRequest.php';
 include 'models/requests/SendMessageRequest.php';
 include 'models/requests/GetMessagesRequest.php';
+include 'models/requests/OrderStatusRequest.php';
 
 include 'models/responses/CreatePrintablePackResponse.php';
 include 'models/responses/SuccessFlagResponse.php';
@@ -40,6 +41,7 @@ include 'models/responses/PayOrderResponse.php';
 include 'models/responses/ReceiptResponse.php';
 include 'models/responses/SendMessageResponse.php';
 include 'models/responses/GetMessagesResponse.php';
+include 'models/responses/OrderStatusResponse.php';
 
 include 'requestProcessor/requests/BaseRequest.php';
 include 'requestProcessor/requests/PlaceOrderHttpRequest.php';
@@ -53,6 +55,7 @@ include 'requestProcessor/requests/PayOrderHttpRequest.php';
 include 'requestProcessor/requests/ReceiptHttpRequest.php';
 include 'requestProcessor/requests/SendMessageHttpRequest.php';
 include 'requestProcessor/requests/GetMessagesHttpRequest.php';
+include 'requestProcessor/requests/OrderStatusHttpRequest.php';
 
 include 'requestProcessor/responses/BaseResponse.php';
 include 'requestProcessor/responses/PlaceOrderHttpResponse.php';
@@ -66,6 +69,7 @@ include 'requestProcessor/responses/PayOrderHttpResponse.php';
 include 'requestProcessor/responses/ReceiptHttpResponse.php';
 include 'requestProcessor/responses/SendMessageHttpResponse.php';
 include 'requestProcessor/responses/GetMessagesHttpResponse.php';
+include 'requestProcessor/responses/OrderStatusHttpResponse.php';
 
 include 'requestProcessor/RequestProcessor.php';
 

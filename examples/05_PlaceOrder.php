@@ -57,10 +57,18 @@ $payOrderResponse = $apiService->payOrder($payOrderRequest);
 echo "\n\nPay order response:\n";
 echo \treatstock\api\v2\helpers\FormattedJson::encode($payOrderResponse);
 
+
+// Order status
+$orderStatusRequest = new \treatstock\api\v2\models\requests\OrderStatusRequest();
+$orderStatusRequest->orderId = $placeOrderResponse->orderId;
+$orderStatusResponse = $apiService->getOrderStatus($orderStatusRequest);
+echo "\n\nOrder status:\n";
+echo \treatstock\api\v2\helpers\FormattedJson::encode($orderStatusResponse);
+
+
 $receiptRequest = new \treatstock\api\v2\models\requests\ReceiptRequest();
 $receiptRequest->orderId = $placeOrderResponse->orderId;
 $receiptResponse = $apiService->downloadReceipt($receiptRequest);
 $filename = 'receipt-' . $placeOrderResponse->orderId . '.pdf';
 echo "\n\nReceipt downloaded as: " . $filename . "\n";
 file_put_contents($filename, $receiptResponse->receiptPdfContent);
-
