@@ -52,13 +52,13 @@ class OrderStatusResponse implements ModelValidatorInterface
     /**
      * Attempt state
      * Base values:
-     *   new - Placed,
-     *   accepted - printing service accepted order,
-     *   printing - printing service working,
-     *   printed  - printing done,
-     *   sent     - sended  to client,
-     *   canceled - canceled,
-     *   received - received by client
+     *   new        - Placed,
+     *   accepted   - printing service accepted order,
+     *   printing   - printing service working,
+     *   printed    - printing done,
+     *   sent       - sended  to client,
+     *   canceled   - canceled,
+     *   received   - received by client
      *
      * @var string
      */
