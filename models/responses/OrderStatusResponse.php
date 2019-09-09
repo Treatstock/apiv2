@@ -35,6 +35,7 @@ class OrderStatusResponse implements ModelValidatorInterface
 
     /**
      * Order state
+     *  Possible values: processing, closed, canceled, completed
      *
      * @var string
      */
@@ -42,6 +43,7 @@ class OrderStatusResponse implements ModelValidatorInterface
 
     /**
      * Payment state
+     *  States like: https://developers.braintreepayments.com/reference/general/statuses
      *
      * @var string
      */
@@ -50,6 +52,14 @@ class OrderStatusResponse implements ModelValidatorInterface
     /**
      * Attempt state
      * @var string
+     * Base values:
+     *   new - Placed,
+     *   accepted - printing service accepted order,
+     *   printing - printing service working,
+     *   printed  - printing done,
+     *   sent     - sended  to client,
+     *   canceled - canceled,
+     *   received - received by client
      */
     public $attemptState;
 
