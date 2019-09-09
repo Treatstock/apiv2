@@ -51,7 +51,6 @@ class OrderStatusResponse implements ModelValidatorInterface
 
     /**
      * Attempt state
-     * @var string
      * Base values:
      *   new - Placed,
      *   accepted - printing service accepted order,
@@ -60,6 +59,8 @@ class OrderStatusResponse implements ModelValidatorInterface
      *   sent     - sended  to client,
      *   canceled - canceled,
      *   received - received by client
+     *
+     * @var string
      */
     public $attemptState;
 
