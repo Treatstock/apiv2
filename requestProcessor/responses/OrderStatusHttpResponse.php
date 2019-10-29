@@ -9,6 +9,7 @@
 namespace treatstock\api\v2\requestProcessor\responses;
 
 use treatstock\api\v2\models\responses\OrderStatusResponse;
+use treatstock\api\v2\models\ShippingOrderInfo;
 
 /**
  * Class OrderStatusHttpResponse
@@ -30,5 +31,7 @@ class OrderStatusHttpResponse extends BaseResponse
     public function loadModel($data)
     {
         $this->loadAttributes(null, $this->model, $data);
+        $this->model->shipping = new ShippingOrderInfo();
+        $this->loadAttributes(null, $this->model->shipping, $data['shipping']);
     }
 }

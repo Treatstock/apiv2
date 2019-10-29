@@ -29,6 +29,7 @@ include 'models/requests/ReceiptRequest.php';
 include 'models/requests/SendMessageRequest.php';
 include 'models/requests/GetMessagesRequest.php';
 include 'models/requests/OrderStatusRequest.php';
+include 'models/ShippingOrderInfo.php';
 
 include 'models/responses/CreatePrintablePackResponse.php';
 include 'models/responses/SuccessFlagResponse.php';
