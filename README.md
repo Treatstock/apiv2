@@ -191,8 +191,8 @@ Output example:
 </pre>
 
 <h2>Pay order</h2>
-You can pay order using treatstock account balance.
-This should be used after a order created:
+You can pay for an order using your Treatstock account balance.
+To use this feature, create an order first. Then use the following code:
 <pre>
 $payOrderRequest = new \treatstock\api\v2\models\requests\PayOrderRequest();
 $payOrderRequest->orderId = $placeOrderResponse->orderId;
@@ -213,7 +213,7 @@ Pay order response:
 </pre>
 
 <h2>Receipt</h2>
-You can get payed order receipt.
+For paid orders, you can get a client’s receipt.
 <pre>
 $receiptRequest = new \treatstock\api\v2\models\requests\ReceiptRequest();
 $receiptRequest->orderId = $placeOrderResponse->orderId;
@@ -223,10 +223,10 @@ echo "\n\nRecipt downloaded as: " . $filename . "\n";
 file_put_contents($filename, $receiptResponse->receiptPdfContent);
 </pre>
 
-Will save receipt pdf file in current directory.
+This will save the receipt (.pdf file) in the current directory.
 
-<h2>Send and Receive messages</h2>
-After order is payed, you can contact via messages with Printing company.
+<h2>Receive and Send messages</h2>
+After an order is paid, you can contact a Printing company via messages.
 
 Receive messages example:
 
@@ -267,8 +267,7 @@ Get messages response:
 }
 </pre>
 
-You will receive list of topics with attached messages.  
-
+You will receive a list of dialog topics with messages attached to them.
 
 Sending message example:
 
@@ -294,8 +293,8 @@ Output example:
 }
 </pre>
 
-Every message attached to message topic. If printing company will be changed, you will have second message topic.
-Files list contains filename, and download file url (available for one hour).
+Every message will be attached to a dialog topic. If a printing company is changed in the process, you will have a second dialog topic.
+Files list contains a filename and url for downloading (available for one hour).
 
 
 <h2>Additional Features</h2>
@@ -320,7 +319,7 @@ $createResponse = $apiService->createPrintablePack($createRequest);
 
 * Treatsock can also autodetect client’s location by their IP. To do so, replace the code:  
 <pre>$createRequest->locationCountryIso = 'US'</pre>
-instead of
+with
 <pre>$createRequest->locationIp = '000.000.000.000';</pre> 
 
 
@@ -329,7 +328,7 @@ instead of
 $createRequest->filePaths[] = __DIR__.'/test.stl';
 </pre>
 
-instead of 
+with
 
 <pre>
 $createRequest->fileUrls[] = 'http://mysite.com/test.stl';
