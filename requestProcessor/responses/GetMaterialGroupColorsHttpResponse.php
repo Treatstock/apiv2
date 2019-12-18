@@ -9,6 +9,7 @@
 namespace treatstock\api\v2\requestProcessor\responses;
 
 use treatstock\api\v2\models\Color;
+use treatstock\api\v2\models\InfillInfo;
 use treatstock\api\v2\models\MaterialGroupColor;
 use treatstock\api\v2\models\responses\GetMaterialGroupColorsResponse;
 
@@ -48,6 +49,10 @@ class GetMaterialGroupColorsHttpResponse  extends BaseResponse
                 $color = new Color();
                 $this->loadAttributes($colorAttributes, $color, $colorElement);
                 $materialGroupColor->colors[] = $color;
+            }
+            if ($materialGroupElement['infill']) {
+                $materialGroupColor->infillInfo = new InfillInfo();
+                $this->loadAttributes(null, $materialGroupColor->infillInfo, $materialGroupElement['infill']);
             }
             $materialGroupColors[] = $materialGroupColor;
         }

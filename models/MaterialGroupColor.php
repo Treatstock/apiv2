@@ -22,4 +22,9 @@ class MaterialGroupColor
      * @var Color[]
      */
     public $colors = [];
+
+    /**
+     * @var InfillInfo
+     */
+    public $infillInfo;
 }
