@@ -30,6 +30,7 @@ $changePackRequest->textureInfo->partsMaterial = [];
 $changePackRequest->textureInfo->partsMaterial[$partId1Uid] = new \treatstock\api\v2\models\Texture();
 $changePackRequest->textureInfo->partsMaterial[$partId1Uid]->materialGroup = 'PLA'; // This is case sensitive, you can get with codes using example 10_GetMaterialGroupColors.php
 $changePackRequest->textureInfo->partsMaterial[$partId1Uid]->color = 'Red';
+$changePackRequest->textureInfo->partsMaterial[$partId1Uid]->infill = 40; // Optional parameter
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid] = new \treatstock\api\v2\models\Texture();
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid]->materialGroup = 'PLA'; // This is case sensitive, you can get with codes using example 10_GetMaterialGroupColors.php
 $changePackRequest->textureInfo->partsMaterial[$partId2Uid]->color = 'Blue';

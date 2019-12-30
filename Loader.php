@@ -4,6 +4,7 @@ include 'models/ModelValidatorInterface.php';
 include 'models/PrintablePackPrice.php';
 include 'models/ModelReflectionService.php';
 include 'models/PriceInfo.php';
+include 'models/InfillInfo.php';
 include 'models/MaterialGroupColor.php';
 include 'models/Color.php';
 include 'models/Model3dPart.php';

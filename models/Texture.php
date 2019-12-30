@@ -33,4 +33,12 @@ class Texture
      * @var string
      */
     public $material;
+
+    /**
+     * Possible material infill.
+     * Optional parameter possible values can be received from 10_GetMaterilaGroupColors.php example
+     *
+     * @var int
+     */
+    public $infill;
 }

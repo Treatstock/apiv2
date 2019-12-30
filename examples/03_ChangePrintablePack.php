@@ -34,7 +34,8 @@ echo "\nChanged.\n";
 // Change printable pack scale
 $changePackRequest = new \treatstock\api\v2\models\requests\ChangePrintablePackRequest();
 $changePackRequest->printablePackId = $createResponse->id;
-$changePackRequest->scaleUnit = \treatstock\api\v2\models\requests\ChangePrintablePackRequest::SCALE_UNIT_IN;
+//$changePackRequest->scaleUnit = \treatstock\api\v2\models\requests\ChangePrintablePackRequest::SCALE_UNIT_IN;
+$changePackRequest->scale = 0.5;
 echo "\nChange printable pack scale request.\n";
 $changePrintablePackResponse = $apiService->changePrintablePack($changePackRequest); // If request failed, it will have exception
 echo "\nChanged.\n";
