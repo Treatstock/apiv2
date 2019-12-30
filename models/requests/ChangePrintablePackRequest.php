@@ -38,6 +38,13 @@ class ChangePrintablePackRequest
     public $scaleUnit;
 
     /**
+     * You can set scale. Possible values: 1 - 100%, 2  - 200%, 0,5 - 50%
+     *
+     * @var float
+     */
+    public $scale;
+
+    /**
      * @var ModelTextureInfo
      */
     public $textureInfo;

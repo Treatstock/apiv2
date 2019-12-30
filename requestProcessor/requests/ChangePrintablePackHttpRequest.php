@@ -51,6 +51,9 @@ class ChangePrintablePackHttpRequest extends BaseRequest
         if ($this->model->scaleUnit) {
             $post['scaleUnit'] = $this->model->scaleUnit;
         }
+        if ($this->model->scale) {
+            $post['scale'] = $this->model->scale;
+        }
         $post = $this->cleanEmptyParams($post);
         $post = http_build_query($post);
         return   $post;
