@@ -39,7 +39,6 @@ class CreatePrintablePackHttpRequest extends BaseRequest
             'location[ip]'       => $this->model->locationIp,
             'location[country]'  => $this->model->locationCountryIso,
             'model3d_cae'        => $this->model->model3dCae,
-            'file-urls'          => $this->model->fileUrls,
         ];
 
         $i = 0;
@@ -51,6 +50,12 @@ class CreatePrintablePackHttpRequest extends BaseRequest
             $post['files[' . $i . ']'] = $file;
             $i++;
         }
+        $i=0;
+        foreach ($this->model->fileUrls as $fileUrl) {
+            $post['file-urls[' . $i . ']'] = $fileUrl;
+            $i++;
+        }
+
         return $this->cleanEmptyParams($post);
     }
 }
