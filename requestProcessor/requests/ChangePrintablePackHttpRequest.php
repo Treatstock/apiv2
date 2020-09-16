@@ -54,6 +54,9 @@ class ChangePrintablePackHttpRequest extends BaseRequest
         if ($this->model->scale) {
             $post['scale'] = $this->model->scale;
         }
+        if ($this->model->locationCountryIso) {
+            $post['location[country]'] = $this->model->locationCountryIso;
+        }
         $post = $this->cleanEmptyParams($post);
         $post = http_build_query($post);
         return   $post;

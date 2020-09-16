@@ -56,4 +56,11 @@ class ChangePrintablePackRequest
      */
     public $qty;
 
+    /**
+     * Client county location. Using iso code: https://en.wikipedia.org/wiki/ISO_3166-1
+     * Example: US
+     *
+     * @var string
+     */
+    public $locationCountryIso = '';
 }

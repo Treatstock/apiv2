@@ -36,6 +36,7 @@ $changePackRequest = new \treatstock\api\v2\models\requests\ChangePrintablePackR
 $changePackRequest->printablePackId = $createResponse->id;
 //$changePackRequest->scaleUnit = \treatstock\api\v2\models\requests\ChangePrintablePackRequest::SCALE_UNIT_IN;
 $changePackRequest->scale = 0.5;
+$changePackRequest->locationCountryIso = 'GB'; // Optional params: to get printable pack price info
 echo "\nChange printable pack scale request.\n";
 $changePrintablePackResponse = $apiService->changePrintablePack($changePackRequest); // If request failed, it will have exception
 echo "\nChanged.\n";
