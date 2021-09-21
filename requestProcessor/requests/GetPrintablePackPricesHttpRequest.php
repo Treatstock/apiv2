@@ -19,7 +19,7 @@ class GetPrintablePackPricesHttpRequest extends BaseRequest
      */
     public function getRequestUrl()
     {
-        return $this->baseUrl.'printable-pack-costs/?printablePackId=' . $this->model->printablePackId . '&private-key=' . $this->privateKey;
+        return $this->baseUrl.'printable-pack-costs?printablePackId=' . $this->model->printablePackId . '&private-key=' . $this->privateKey;
     }
 
     /**
